@@ -2,6 +2,13 @@
 
 using namespace std;
 
+/*
+	We find the connected components and for each component we check the
+	set of elements, if the set of elements for all components are good, then
+	we can safely print yes else we print no.
+
+*/
+
 void dfs(vector<int>* edges, int n,int start,unordered_set<int> * component,bool * visited)
 {
 	visited[start] = true;
