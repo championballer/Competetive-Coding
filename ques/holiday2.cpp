@@ -14,7 +14,7 @@ int main()
     	cin>>arr[i];
     }
     
-    int count = 0;
+    long long count = 0;
     for(int i=0;i<=n-4;i++)
     {
         char current = arr[i];
