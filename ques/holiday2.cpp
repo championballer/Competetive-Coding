@@ -8,18 +8,17 @@ int main()
     cin>>n;
     
     vector<char> arr(n);
-    unordered_map<char,vector<int> > ourmap;
+    
     for(int i=0;i<n;i++)
     {
     	cin>>arr[i];
-    	ourmap[arr[i]].push_back(i);
     }
     
     int count = 0;
     for(int i=0;i<=n-4;i++)
     {
         char current = arr[i];
-	int mark = 0;
+	    int mark = 0;
         for(int j=i+2;j<n-1;j++)
         {
             	
@@ -29,14 +28,14 @@ int main()
             	memset(visited,0,sizeof(int)*128);
                 mark = j;
                 for(int k=i+1;k<mark;k++)
-        	{
+        	    {
             		char tomatch = arr[k];
             		int counts = 0;
             		if(visited[tomatch]==0)
             		{	
-            			for(int q=0;q<ourmap[tomatch].size();q++)
+            			for(int q=mark+1;q<n;q++)
                 		{
-                			if(mark<ourmap[tomatch][q])counts++;
+                			if(arr[q]==tomatch)counts++;
                 		}
                 		visited[tomatch]=counts;
                 		
