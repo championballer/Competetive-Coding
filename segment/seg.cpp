@@ -2,6 +2,28 @@
 
 using namespace std;
 
+int query(int * tree, int si,int ei,int ci, int qi,int qe)
+{
+	if(si==qi && ei==qe)return tree[ci];
+	
+	int mid = (si+ei)/2;
+	
+	if(qi>mid)
+	{
+		return query(tree,mid+1,ei,2*ci+1,qi,qe);
+	}
+	
+	else if(qe<=mid)
+	{
+		return query(tree,si,mid,2*ci,qi,qe);
+	}
+	
+	else
+	{
+		return query(tree,si,mid,2*ci,qi,mid)+query(tree,mid+1,ei,2*ci+1,mid+1,qe);
+	}
+}
+
 void update(int * tree, int si, int ei, int ci, int i,int val)
 {
 	if(si==i && ei==i)
@@ -53,10 +75,14 @@ int main()
 	}
 	cout<<endl;
 	
-	update(tree,0,8,1,2,6);
+	/*update(tree,0,8,1,2,6);
 	for(int i=1;i<18;i++)
 	{
 		cout<<tree[i]<<" ";
 	}
 	cout<<endl;
+	*/
+	cout<<query(tree,0,8,1,1,3)<<endl;
+	cout<<query(tree,0,8,1,0,4)<<endl;
+	cout<<query(tree,0,8,1,3,8)<<endl;
 }
