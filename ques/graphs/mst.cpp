@@ -6,12 +6,25 @@ bool check(int f,int s,int * parent)
 {
 	int pf = parent[f];
 	int ps = parent[s];
+	while(pf!=parent[pf])
+	{
+		pf = parent[pf];
+	}
 	
+	while(ps!=parent[ps])
+	{
+		ps = parent[ps];
+	}
+
 	if(pf==ps)return true;
-	else return false;
+	else
+	{
+	  parent[f] = ps;
+	  return false;
+	}
 }
 
-vector<pair<int,pair<int,int> > > krsukal(vector<pair<int,pair<int,int> > >& edges,int n,int * parent)
+vector<pair<int,pair<int,int> > > kruskal(vector<pair<int,pair<int,int> > >& edges,int n,int * parent)
 {
 	vector<pair<int,pair<int,int> > > output;
 	int count = 0;
@@ -19,10 +32,10 @@ vector<pair<int,pair<int,int> > > krsukal(vector<pair<int,pair<int,int> > >& edg
 	{
 		int f = edges[i].second.first;
 		int s = edges[i].second.second;
-		int w = edges[i].fisrt;
-		if(check(f,s,parent))
+		int w = edges[i].first;
+		if(!check(f,s,parent))
 		{
-			output.push_back(make_pair(w,make_pair(f,s));
+			output.push_back(make_pair(w,make_pair(f,s)));
 			count++;
 			if(count==n-1)break;
 		}
@@ -47,14 +60,14 @@ int main()
 	
 	sort(edges.begin(),edges.end());
 	
-	cout<<endl;
+	/*cout<<endl;
 	for(int i=0;i<m;i++)
 	{
 		int f = edges[i].second.first;
 		int s = edges[i].second.second;
 		int w = edges[i].first;
 		cout<<f+1<<" "<<s+1<<" "<<w<<endl;
-	}
+	}*/
 	
 	int * parent = new int[n];
 	for(int i=0;i<n;i++)parent[i]=i;
@@ -70,7 +83,7 @@ int main()
 		s = mst[i].second.second;
 		w = mst[i].first;
 		tw+=w;
-		cout<<f+1<<" "<<s+1<<" "<<w<<endl;
+		//cout<<f+1<<" "<<s+1<<" "<<w<<endl;
 	}
 	
 	cout<<tw<<endl;
