@@ -4,8 +4,8 @@ using namespace std;
 
 bool check(int f,int s,int * parent)
 {
-	int pf = parent[f];
-	int ps = parent[s];
+	int pf = f;
+	int ps = s;
 	while(pf!=parent[pf])
 	{
 		pf = parent[pf];
@@ -19,8 +19,8 @@ bool check(int f,int s,int * parent)
 	if(pf==ps)return true;
 	else
 	{
-	  parent[f] = ps;
-	  return false;
+	   parent[pf] = ps;
+	   return false;
 	}
 }
 
@@ -37,12 +37,23 @@ vector<pair<int,pair<int,int> > > kruskal(vector<pair<int,pair<int,int> > >& edg
 		{
 			output.push_back(make_pair(w,make_pair(f,s)));
 			count++;
+			//parent[f] = s;
 			if(count==n-1)break;
 		}
 	}
 	return output;
 } 
+/* 
+5 7
+1 2 1
+1 3 2
+2 3 3
+2 4 7
+4 5 6
+3 5 5
+2 5 4
 
+*/ 
 int main()
 {
 	int n,m;
