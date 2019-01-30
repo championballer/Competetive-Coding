@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long int
-
+/*
 int subarrays(ll * arr, int n)
 {
 	if(n==0 || n==1)return 0;
@@ -22,6 +22,7 @@ int subarrays(ll * arr, int n)
 
 	return current+arg;
 }
+*/
 
 int main()
 {
@@ -33,5 +34,25 @@ int main()
 		cin>>arr[i];
 	}
 
-	cout<<subarrays(arr,n)<<endl;
+	ll * dp = new ll[n];
+	dp[n-1] = 0;
+	for(int i=n-2;i>=0;i--)
+	{
+		int current=0;
+		int odd=0;
+		int even=0;
+		for(int j=i;j<n;j++)
+		{
+			
+
+			if(arr[j]%2==0)even++;
+			else odd++;
+	
+			if(even==odd)current++;
+		}
+		dp[i]=dp[i+1]+current;
+	}
+
+	cout<<dp[0]<<endl;
+
 }
