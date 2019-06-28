@@ -3,7 +3,7 @@ using namespace std;
 typedef long long ll;
 
 ll arr[100004];
-ll tree[4*100004];
+ll tree[3*100004];
 
 void buildTree(ll l,ll r, ll i)
 {
