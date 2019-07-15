@@ -32,8 +32,8 @@ unordered_set<unordered_set<int>*>* getComp(vector<int>* edges,int n)
 		}
 		
 	}
-	
-	return components;
+	delete [] visited;
+ 	return components;
 }
 
 int main()
@@ -68,8 +68,12 @@ int main()
 			cout<<*it2+1<<" ";
 			it2++;
 		}
+		delete component;
 		it1++;
 		cout<<endl;
 	}
+
+	delete components;
+	delete [] edges;
 	
 }
